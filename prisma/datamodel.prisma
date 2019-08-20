@@ -1,6 +1,7 @@
   type Snack {
     id: ID! @id
     name: String!
+    image: String!
     description: String
     nutrition: Nutrition!
     dietary: Dietary!

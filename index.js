@@ -4,30 +4,32 @@ const prisma = require("./generated/prisma-client/");
 
 function getNutritional(databaseEntry) {
     return ({
-        "calories": databaseEntry.nutrition().calories,
-        "sugar": databaseEntry.nutrition().sugar
+        "calories": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).nutrition().calories,
+        "sugar": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).nutrition().sugar
     });
 }
 
 function getDietary(databaseEntry) {
     return ( 
         {
-            "vegetarian": databaseEntry.dietary().vegetarian,
-            "vegan": databaseEntry.dietary().vegan,
-            "nutFree": databaseEntry.dietary().nutFree,
-            "glutenFree": databaseEntry.dietary().glutenFree,
+            "vegetarian": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).dietary().vegetarian,
+            "vegan": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).dietary().vegan,
+            "nutFree": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).dietary().nutFree,
+            "glutenFree": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).dietary().glutenFree,
         }
     );
 }
 
+// A map of functions which return data for the schema.
 const resolvers = {
   Query: {
     snack: () => {
-        const databaseEntry = server.context().prisma.prisma.snack({ id: "cjzjpljikq27h0b53dqfr9u99" });
+        const databaseEntry = server.context().prisma.prisma;
         const snackEntry = {
-            "id": databaseEntry.id,
-            "name": databaseEntry.name,
-            "description": databaseEntry.description,
+            "id": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).id,
+            "name": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).name,
+            "image": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).image,
+            "description": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).description,
             "nutrition": getNutritional(databaseEntry),
             "dietary": getDietary(databaseEntry),
         }

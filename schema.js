@@ -11,6 +11,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     description: String
+    image: String!
     nutrition: Nutrition!
     dietary: Dietary!
   }

@@ -204,6 +204,8 @@ export type SnackOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "image_ASC"
+  | "image_DESC"
   | "description_ASC"
   | "description_DESC";
 
@@ -314,6 +316,20 @@ export interface SnackWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -376,6 +392,7 @@ export interface NutritionUpdateManyMutationInput {
 export interface SnackCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  image: String;
   description?: Maybe<String>;
   nutrition: NutritionCreateOneInput;
   dietary: DietaryCreateOneInput;
@@ -393,6 +410,7 @@ export interface DietaryCreateOneInput {
 
 export interface SnackUpdateInput {
   name?: Maybe<String>;
+  image?: Maybe<String>;
   description?: Maybe<String>;
   nutrition?: Maybe<NutritionUpdateOneRequiredInput>;
   dietary?: Maybe<DietaryUpdateOneRequiredInput>;
@@ -436,6 +454,7 @@ export interface DietaryUpsertNestedInput {
 
 export interface SnackUpdateManyMutationInput {
   name?: Maybe<String>;
+  image?: Maybe<String>;
   description?: Maybe<String>;
 }
 
@@ -682,12 +701,14 @@ export interface AggregateNutritionSubscription
 export interface Snack {
   id: ID_Output;
   name: String;
+  image: String;
   description?: String;
 }
 
 export interface SnackPromise extends Promise<Snack>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  image: () => Promise<String>;
   description: () => Promise<String>;
   nutrition: <T = NutritionPromise>() => T;
   dietary: <T = DietaryPromise>() => T;
@@ -698,6 +719,7 @@ export interface SnackSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   nutrition: <T = NutritionSubscription>() => T;
   dietary: <T = DietarySubscription>() => T;
@@ -708,6 +730,7 @@ export interface SnackNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  image: () => Promise<String>;
   description: () => Promise<String>;
   nutrition: <T = NutritionPromise>() => T;
   dietary: <T = DietaryPromise>() => T;
@@ -911,6 +934,7 @@ export interface SnackSubscriptionPayloadSubscription
 export interface SnackPreviousValues {
   id: ID_Output;
   name: String;
+  image: String;
   description?: String;
 }
 
@@ -919,6 +943,7 @@ export interface SnackPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  image: () => Promise<String>;
   description: () => Promise<String>;
 }
 
@@ -927,6 +952,7 @@ export interface SnackPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
 }
 

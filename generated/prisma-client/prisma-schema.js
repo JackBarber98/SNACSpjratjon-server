@@ -339,6 +339,7 @@ type Query {
 type Snack {
   id: ID!
   name: String!
+  image: String!
   description: String
   nutrition: Nutrition!
   dietary: Dietary!
@@ -353,6 +354,7 @@ type SnackConnection {
 input SnackCreateInput {
   id: ID
   name: String!
+  image: String!
   description: String
   nutrition: NutritionCreateOneInput!
   dietary: DietaryCreateOneInput!
@@ -368,6 +370,8 @@ enum SnackOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  image_ASC
+  image_DESC
   description_ASC
   description_DESC
 }
@@ -375,6 +379,7 @@ enum SnackOrderByInput {
 type SnackPreviousValues {
   id: ID!
   name: String!
+  image: String!
   description: String
 }
 
@@ -398,6 +403,7 @@ input SnackSubscriptionWhereInput {
 
 input SnackUpdateInput {
   name: String
+  image: String
   description: String
   nutrition: NutritionUpdateOneRequiredInput
   dietary: DietaryUpdateOneRequiredInput
@@ -405,6 +411,7 @@ input SnackUpdateInput {
 
 input SnackUpdateManyMutationInput {
   name: String
+  image: String
   description: String
 }
 
@@ -437,6 +444,20 @@ input SnackWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
