@@ -20,13 +20,16 @@ function getDietary(databaseEntry) {
     );
 }
 
+function findId(name, databaseEntry) {
+}
+
 // A map of functions which return data for the schema.
 const resolvers = {
   Query: {
     snack: () => {
         const databaseEntry = server.context().prisma.prisma;
         const snackEntry = {
-            "id": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).id,
+            "id": databaseEntry.snack().id,
             "name": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).name,
             "image": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).image,
             "description": databaseEntry.snack({ id: "cjzjpljikq27h0b53dqfr9u99" }).description,
