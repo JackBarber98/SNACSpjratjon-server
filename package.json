@@ -1,0 +1,16 @@
+{
+  "name": "snacspjratjon-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Test command running\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.8.1",
+    "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5"
+  }
+}
