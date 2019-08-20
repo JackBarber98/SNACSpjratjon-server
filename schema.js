@@ -2,7 +2,6 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    hello: String!
     snack: Snack!
     nutrition: Nutrition!
     dietary: Dietary!

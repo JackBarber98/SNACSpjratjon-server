@@ -1,0 +1,154 @@
+{
+  "snacks": [
+    {
+      "id": 0,
+      "name": "Maltesers",
+      "image": "maltesers.jpg",
+      "nutrition": {
+        "sugar": 24,
+        "cal": 234
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 1,
+      "name": "Digestive Biscuits",
+      "image": "digestives.jpg",
+      "nutrition": {
+        "sugar": 2.5,
+        "cal": 298
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "Biscuit Moments",
+      "image": "specialK.jpg",
+      "nutrition": {
+        "sugar": 7.8,
+        "cal": 95
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 3,
+      "name": "Brazil Nuts",
+      "image": "brazil.jpg",
+      "nutrition": {
+        "sugar": 0.5,
+        "cal": 171
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "nutFree": false
+      }
+    },
+    {
+      "id": 4,
+      "name": "Blueberry Muffin",
+      "image": "muffin.png",
+      "nutrition": {
+        "sugar": 23.4,
+        "cal": 300
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "nutFree": false
+      }
+    },
+    {
+      "id": 5,
+      "name": "PB Sandwich",
+      "image": "PBSandwich.jpeg",
+      "nutrition": {
+        "sugar": 5.8,
+        "cal": 327
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": false,
+        "nutFree": false
+      }
+    },
+    {
+      "id": 6,
+      "name": "Banana",
+      "image": "banana.jpeg",
+      "nutrition": {
+        "sugar": 27.2,
+        "cal": 135
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 7,
+      "name": "Sausage Roll",
+      "image": "sausage.jpg",
+      "nutrition": {
+        "sugar": 1.1,
+        "cal": 189
+      },
+      "dietary": {
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 8,
+      "name": "Cheese",
+      "image": "cheese.jpg",
+      "nutrition": {
+        "sugar": 0.1,
+        "cal": 416
+      },
+      "dietary": {
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": true,
+        "nutFree": true
+      }
+    },
+    {
+      "id": 9,
+      "name": "Beef Jerky",
+      "image": "beef.jpg",
+      "nutrition": {
+        "sugar": 9.9,
+        "cal": 123
+      },
+      "dietary": {
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "nutFree": true
+      }
+    }
+  ]
+}
