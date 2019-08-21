@@ -16,8 +16,6 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  dietary: (where?: DietaryWhereInput) => Promise<boolean>;
-  nutrition: (where?: NutritionWhereInput) => Promise<boolean>;
   snack: (where?: SnackWhereInput) => Promise<boolean>;
 }
 
@@ -40,44 +38,6 @@ export interface Prisma {
    * Queries
    */
 
-  dietary: (where: DietaryWhereUniqueInput) => DietaryNullablePromise;
-  dietaries: (args?: {
-    where?: DietaryWhereInput;
-    orderBy?: DietaryOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Dietary>;
-  dietariesConnection: (args?: {
-    where?: DietaryWhereInput;
-    orderBy?: DietaryOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => DietaryConnectionPromise;
-  nutrition: (where: NutritionWhereUniqueInput) => NutritionNullablePromise;
-  nutritions: (args?: {
-    where?: NutritionWhereInput;
-    orderBy?: NutritionOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Nutrition>;
-  nutritionsConnection: (args?: {
-    where?: NutritionWhereInput;
-    orderBy?: NutritionOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => NutritionConnectionPromise;
   snack: (where: SnackWhereUniqueInput) => SnackNullablePromise;
   snacks: (args?: {
     where?: SnackWhereInput;
@@ -103,38 +63,6 @@ export interface Prisma {
    * Mutations
    */
 
-  createDietary: (data: DietaryCreateInput) => DietaryPromise;
-  updateDietary: (args: {
-    data: DietaryUpdateInput;
-    where: DietaryWhereUniqueInput;
-  }) => DietaryPromise;
-  updateManyDietaries: (args: {
-    data: DietaryUpdateManyMutationInput;
-    where?: DietaryWhereInput;
-  }) => BatchPayloadPromise;
-  upsertDietary: (args: {
-    where: DietaryWhereUniqueInput;
-    create: DietaryCreateInput;
-    update: DietaryUpdateInput;
-  }) => DietaryPromise;
-  deleteDietary: (where: DietaryWhereUniqueInput) => DietaryPromise;
-  deleteManyDietaries: (where?: DietaryWhereInput) => BatchPayloadPromise;
-  createNutrition: (data: NutritionCreateInput) => NutritionPromise;
-  updateNutrition: (args: {
-    data: NutritionUpdateInput;
-    where: NutritionWhereUniqueInput;
-  }) => NutritionPromise;
-  updateManyNutritions: (args: {
-    data: NutritionUpdateManyMutationInput;
-    where?: NutritionWhereInput;
-  }) => BatchPayloadPromise;
-  upsertNutrition: (args: {
-    where: NutritionWhereUniqueInput;
-    create: NutritionCreateInput;
-    update: NutritionUpdateInput;
-  }) => NutritionPromise;
-  deleteNutrition: (where: NutritionWhereUniqueInput) => NutritionPromise;
-  deleteManyNutritions: (where?: NutritionWhereInput) => BatchPayloadPromise;
   createSnack: (data: SnackCreateInput) => SnackPromise;
   updateSnack: (args: {
     data: SnackUpdateInput;
@@ -160,12 +88,6 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  dietary: (
-    where?: DietarySubscriptionWhereInput
-  ) => DietarySubscriptionPayloadSubscription;
-  nutrition: (
-    where?: NutritionSubscriptionWhereInput
-  ) => NutritionSubscriptionPayloadSubscription;
   snack: (
     where?: SnackSubscriptionWhereInput
   ) => SnackSubscriptionPayloadSubscription;
@@ -179,9 +101,19 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type DietaryOrderByInput =
+export type SnackOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "calories_ASC"
+  | "calories_DESC"
+  | "sugar_ASC"
+  | "sugar_DESC"
   | "vegetarian_ASC"
   | "vegetarian_DESC"
   | "vegan_ASC"
@@ -191,97 +123,7 @@ export type DietaryOrderByInput =
   | "glutenFree_ASC"
   | "glutenFree_DESC";
 
-export type NutritionOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "calories_ASC"
-  | "calories_DESC"
-  | "sugar_ASC"
-  | "sugar_DESC";
-
-export type SnackOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "image_ASC"
-  | "image_DESC"
-  | "description_ASC"
-  | "description_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
-export type DietaryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface DietaryWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  vegetarian?: Maybe<Boolean>;
-  vegetarian_not?: Maybe<Boolean>;
-  vegan?: Maybe<Boolean>;
-  vegan_not?: Maybe<Boolean>;
-  nutFree?: Maybe<Boolean>;
-  nutFree_not?: Maybe<Boolean>;
-  glutenFree?: Maybe<Boolean>;
-  glutenFree_not?: Maybe<Boolean>;
-  AND?: Maybe<DietaryWhereInput[] | DietaryWhereInput>;
-  OR?: Maybe<DietaryWhereInput[] | DietaryWhereInput>;
-  NOT?: Maybe<DietaryWhereInput[] | DietaryWhereInput>;
-}
-
-export type NutritionWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface NutritionWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  calories?: Maybe<Float>;
-  calories_not?: Maybe<Float>;
-  calories_in?: Maybe<Float[] | Float>;
-  calories_not_in?: Maybe<Float[] | Float>;
-  calories_lt?: Maybe<Float>;
-  calories_lte?: Maybe<Float>;
-  calories_gt?: Maybe<Float>;
-  calories_gte?: Maybe<Float>;
-  sugar?: Maybe<Float>;
-  sugar_not?: Maybe<Float>;
-  sugar_in?: Maybe<Float[] | Float>;
-  sugar_not_in?: Maybe<Float[] | Float>;
-  sugar_lt?: Maybe<Float>;
-  sugar_lte?: Maybe<Float>;
-  sugar_gt?: Maybe<Float>;
-  sugar_gte?: Maybe<Float>;
-  AND?: Maybe<NutritionWhereInput[] | NutritionWhereInput>;
-  OR?: Maybe<NutritionWhereInput[] | NutritionWhereInput>;
-  NOT?: Maybe<NutritionWhereInput[] | NutritionWhereInput>;
-}
 
 export type SnackWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -344,49 +186,33 @@ export interface SnackWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  nutrition?: Maybe<NutritionWhereInput>;
-  dietary?: Maybe<DietaryWhereInput>;
+  calories?: Maybe<Float>;
+  calories_not?: Maybe<Float>;
+  calories_in?: Maybe<Float[] | Float>;
+  calories_not_in?: Maybe<Float[] | Float>;
+  calories_lt?: Maybe<Float>;
+  calories_lte?: Maybe<Float>;
+  calories_gt?: Maybe<Float>;
+  calories_gte?: Maybe<Float>;
+  sugar?: Maybe<Float>;
+  sugar_not?: Maybe<Float>;
+  sugar_in?: Maybe<Float[] | Float>;
+  sugar_not_in?: Maybe<Float[] | Float>;
+  sugar_lt?: Maybe<Float>;
+  sugar_lte?: Maybe<Float>;
+  sugar_gt?: Maybe<Float>;
+  sugar_gte?: Maybe<Float>;
+  vegetarian?: Maybe<Boolean>;
+  vegetarian_not?: Maybe<Boolean>;
+  vegan?: Maybe<Boolean>;
+  vegan_not?: Maybe<Boolean>;
+  nutFree?: Maybe<Boolean>;
+  nutFree_not?: Maybe<Boolean>;
+  glutenFree?: Maybe<Boolean>;
+  glutenFree_not?: Maybe<Boolean>;
   AND?: Maybe<SnackWhereInput[] | SnackWhereInput>;
   OR?: Maybe<SnackWhereInput[] | SnackWhereInput>;
   NOT?: Maybe<SnackWhereInput[] | SnackWhereInput>;
-}
-
-export interface DietaryCreateInput {
-  id?: Maybe<ID_Input>;
-  vegetarian: Boolean;
-  vegan: Boolean;
-  nutFree: Boolean;
-  glutenFree: Boolean;
-}
-
-export interface DietaryUpdateInput {
-  vegetarian?: Maybe<Boolean>;
-  vegan?: Maybe<Boolean>;
-  nutFree?: Maybe<Boolean>;
-  glutenFree?: Maybe<Boolean>;
-}
-
-export interface DietaryUpdateManyMutationInput {
-  vegetarian?: Maybe<Boolean>;
-  vegan?: Maybe<Boolean>;
-  nutFree?: Maybe<Boolean>;
-  glutenFree?: Maybe<Boolean>;
-}
-
-export interface NutritionCreateInput {
-  id?: Maybe<ID_Input>;
-  calories: Float;
-  sugar: Float;
-}
-
-export interface NutritionUpdateInput {
-  calories?: Maybe<Float>;
-  sugar?: Maybe<Float>;
-}
-
-export interface NutritionUpdateManyMutationInput {
-  calories?: Maybe<Float>;
-  sugar?: Maybe<Float>;
 }
 
 export interface SnackCreateInput {
@@ -394,96 +220,36 @@ export interface SnackCreateInput {
   name: String;
   image: String;
   description?: Maybe<String>;
-  nutrition: NutritionCreateOneInput;
-  dietary: DietaryCreateOneInput;
-}
-
-export interface NutritionCreateOneInput {
-  create?: Maybe<NutritionCreateInput>;
-  connect?: Maybe<NutritionWhereUniqueInput>;
-}
-
-export interface DietaryCreateOneInput {
-  create?: Maybe<DietaryCreateInput>;
-  connect?: Maybe<DietaryWhereUniqueInput>;
+  calories: Float;
+  sugar: Float;
+  vegetarian: Boolean;
+  vegan: Boolean;
+  nutFree: Boolean;
+  glutenFree: Boolean;
 }
 
 export interface SnackUpdateInput {
   name?: Maybe<String>;
   image?: Maybe<String>;
   description?: Maybe<String>;
-  nutrition?: Maybe<NutritionUpdateOneRequiredInput>;
-  dietary?: Maybe<DietaryUpdateOneRequiredInput>;
-}
-
-export interface NutritionUpdateOneRequiredInput {
-  create?: Maybe<NutritionCreateInput>;
-  update?: Maybe<NutritionUpdateDataInput>;
-  upsert?: Maybe<NutritionUpsertNestedInput>;
-  connect?: Maybe<NutritionWhereUniqueInput>;
-}
-
-export interface NutritionUpdateDataInput {
   calories?: Maybe<Float>;
   sugar?: Maybe<Float>;
-}
-
-export interface NutritionUpsertNestedInput {
-  update: NutritionUpdateDataInput;
-  create: NutritionCreateInput;
-}
-
-export interface DietaryUpdateOneRequiredInput {
-  create?: Maybe<DietaryCreateInput>;
-  update?: Maybe<DietaryUpdateDataInput>;
-  upsert?: Maybe<DietaryUpsertNestedInput>;
-  connect?: Maybe<DietaryWhereUniqueInput>;
-}
-
-export interface DietaryUpdateDataInput {
   vegetarian?: Maybe<Boolean>;
   vegan?: Maybe<Boolean>;
   nutFree?: Maybe<Boolean>;
   glutenFree?: Maybe<Boolean>;
 }
 
-export interface DietaryUpsertNestedInput {
-  update: DietaryUpdateDataInput;
-  create: DietaryCreateInput;
-}
-
 export interface SnackUpdateManyMutationInput {
   name?: Maybe<String>;
   image?: Maybe<String>;
   description?: Maybe<String>;
-}
-
-export interface DietarySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DietaryWhereInput>;
-  AND?: Maybe<DietarySubscriptionWhereInput[] | DietarySubscriptionWhereInput>;
-  OR?: Maybe<DietarySubscriptionWhereInput[] | DietarySubscriptionWhereInput>;
-  NOT?: Maybe<DietarySubscriptionWhereInput[] | DietarySubscriptionWhereInput>;
-}
-
-export interface NutritionSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NutritionWhereInput>;
-  AND?: Maybe<
-    NutritionSubscriptionWhereInput[] | NutritionSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    NutritionSubscriptionWhereInput[] | NutritionSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    NutritionSubscriptionWhereInput[] | NutritionSubscriptionWhereInput
-  >;
+  calories?: Maybe<Float>;
+  sugar?: Maybe<Float>;
+  vegetarian?: Maybe<Boolean>;
+  vegan?: Maybe<Boolean>;
+  nutFree?: Maybe<Boolean>;
+  glutenFree?: Maybe<Boolean>;
 }
 
 export interface SnackSubscriptionWhereInput {
@@ -501,61 +267,81 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface Dietary {
+export interface Snack {
   id: ID_Output;
+  name: String;
+  image: String;
+  description?: String;
+  calories: Float;
+  sugar: Float;
   vegetarian: Boolean;
   vegan: Boolean;
   nutFree: Boolean;
   glutenFree: Boolean;
 }
 
-export interface DietaryPromise extends Promise<Dietary>, Fragmentable {
+export interface SnackPromise extends Promise<Snack>, Fragmentable {
   id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  image: () => Promise<String>;
+  description: () => Promise<String>;
+  calories: () => Promise<Float>;
+  sugar: () => Promise<Float>;
   vegetarian: () => Promise<Boolean>;
   vegan: () => Promise<Boolean>;
   nutFree: () => Promise<Boolean>;
   glutenFree: () => Promise<Boolean>;
 }
 
-export interface DietarySubscription
-  extends Promise<AsyncIterator<Dietary>>,
+export interface SnackSubscription
+  extends Promise<AsyncIterator<Snack>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  calories: () => Promise<AsyncIterator<Float>>;
+  sugar: () => Promise<AsyncIterator<Float>>;
   vegetarian: () => Promise<AsyncIterator<Boolean>>;
   vegan: () => Promise<AsyncIterator<Boolean>>;
   nutFree: () => Promise<AsyncIterator<Boolean>>;
   glutenFree: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface DietaryNullablePromise
-  extends Promise<Dietary | null>,
+export interface SnackNullablePromise
+  extends Promise<Snack | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  image: () => Promise<String>;
+  description: () => Promise<String>;
+  calories: () => Promise<Float>;
+  sugar: () => Promise<Float>;
   vegetarian: () => Promise<Boolean>;
   vegan: () => Promise<Boolean>;
   nutFree: () => Promise<Boolean>;
   glutenFree: () => Promise<Boolean>;
 }
 
-export interface DietaryConnection {
+export interface SnackConnection {
   pageInfo: PageInfo;
-  edges: DietaryEdge[];
+  edges: SnackEdge[];
 }
 
-export interface DietaryConnectionPromise
-  extends Promise<DietaryConnection>,
+export interface SnackConnectionPromise
+  extends Promise<SnackConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DietaryEdge>>() => T;
-  aggregate: <T = AggregateDietaryPromise>() => T;
+  edges: <T = FragmentableArray<SnackEdge>>() => T;
+  aggregate: <T = AggregateSnackPromise>() => T;
 }
 
-export interface DietaryConnectionSubscription
-  extends Promise<AsyncIterator<DietaryConnection>>,
+export interface SnackConnectionSubscription
+  extends Promise<AsyncIterator<SnackConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DietaryEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDietarySubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SnackEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSnackSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -579,182 +365,6 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface DietaryEdge {
-  node: Dietary;
-  cursor: String;
-}
-
-export interface DietaryEdgePromise extends Promise<DietaryEdge>, Fragmentable {
-  node: <T = DietaryPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DietaryEdgeSubscription
-  extends Promise<AsyncIterator<DietaryEdge>>,
-    Fragmentable {
-  node: <T = DietarySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateDietary {
-  count: Int;
-}
-
-export interface AggregateDietaryPromise
-  extends Promise<AggregateDietary>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDietarySubscription
-  extends Promise<AsyncIterator<AggregateDietary>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Nutrition {
-  id: ID_Output;
-  calories: Float;
-  sugar: Float;
-}
-
-export interface NutritionPromise extends Promise<Nutrition>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  calories: () => Promise<Float>;
-  sugar: () => Promise<Float>;
-}
-
-export interface NutritionSubscription
-  extends Promise<AsyncIterator<Nutrition>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  calories: () => Promise<AsyncIterator<Float>>;
-  sugar: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface NutritionNullablePromise
-  extends Promise<Nutrition | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  calories: () => Promise<Float>;
-  sugar: () => Promise<Float>;
-}
-
-export interface NutritionConnection {
-  pageInfo: PageInfo;
-  edges: NutritionEdge[];
-}
-
-export interface NutritionConnectionPromise
-  extends Promise<NutritionConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<NutritionEdge>>() => T;
-  aggregate: <T = AggregateNutritionPromise>() => T;
-}
-
-export interface NutritionConnectionSubscription
-  extends Promise<AsyncIterator<NutritionConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<NutritionEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateNutritionSubscription>() => T;
-}
-
-export interface NutritionEdge {
-  node: Nutrition;
-  cursor: String;
-}
-
-export interface NutritionEdgePromise
-  extends Promise<NutritionEdge>,
-    Fragmentable {
-  node: <T = NutritionPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface NutritionEdgeSubscription
-  extends Promise<AsyncIterator<NutritionEdge>>,
-    Fragmentable {
-  node: <T = NutritionSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateNutrition {
-  count: Int;
-}
-
-export interface AggregateNutritionPromise
-  extends Promise<AggregateNutrition>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateNutritionSubscription
-  extends Promise<AsyncIterator<AggregateNutrition>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Snack {
-  id: ID_Output;
-  name: String;
-  image: String;
-  description?: String;
-}
-
-export interface SnackPromise extends Promise<Snack>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  image: () => Promise<String>;
-  description: () => Promise<String>;
-  nutrition: <T = NutritionPromise>() => T;
-  dietary: <T = DietaryPromise>() => T;
-}
-
-export interface SnackSubscription
-  extends Promise<AsyncIterator<Snack>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  nutrition: <T = NutritionSubscription>() => T;
-  dietary: <T = DietarySubscription>() => T;
-}
-
-export interface SnackNullablePromise
-  extends Promise<Snack | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  image: () => Promise<String>;
-  description: () => Promise<String>;
-  nutrition: <T = NutritionPromise>() => T;
-  dietary: <T = DietaryPromise>() => T;
-}
-
-export interface SnackConnection {
-  pageInfo: PageInfo;
-  edges: SnackEdge[];
-}
-
-export interface SnackConnectionPromise
-  extends Promise<SnackConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SnackEdge>>() => T;
-  aggregate: <T = AggregateSnackPromise>() => T;
-}
-
-export interface SnackConnectionSubscription
-  extends Promise<AsyncIterator<SnackConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SnackEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSnackSubscription>() => T;
 }
 
 export interface SnackEdge {
@@ -806,106 +416,6 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface DietarySubscriptionPayload {
-  mutation: MutationType;
-  node: Dietary;
-  updatedFields: String[];
-  previousValues: DietaryPreviousValues;
-}
-
-export interface DietarySubscriptionPayloadPromise
-  extends Promise<DietarySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DietaryPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DietaryPreviousValuesPromise>() => T;
-}
-
-export interface DietarySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DietarySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DietarySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DietaryPreviousValuesSubscription>() => T;
-}
-
-export interface DietaryPreviousValues {
-  id: ID_Output;
-  vegetarian: Boolean;
-  vegan: Boolean;
-  nutFree: Boolean;
-  glutenFree: Boolean;
-}
-
-export interface DietaryPreviousValuesPromise
-  extends Promise<DietaryPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  vegetarian: () => Promise<Boolean>;
-  vegan: () => Promise<Boolean>;
-  nutFree: () => Promise<Boolean>;
-  glutenFree: () => Promise<Boolean>;
-}
-
-export interface DietaryPreviousValuesSubscription
-  extends Promise<AsyncIterator<DietaryPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  vegetarian: () => Promise<AsyncIterator<Boolean>>;
-  vegan: () => Promise<AsyncIterator<Boolean>>;
-  nutFree: () => Promise<AsyncIterator<Boolean>>;
-  glutenFree: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface NutritionSubscriptionPayload {
-  mutation: MutationType;
-  node: Nutrition;
-  updatedFields: String[];
-  previousValues: NutritionPreviousValues;
-}
-
-export interface NutritionSubscriptionPayloadPromise
-  extends Promise<NutritionSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = NutritionPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = NutritionPreviousValuesPromise>() => T;
-}
-
-export interface NutritionSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<NutritionSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = NutritionSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = NutritionPreviousValuesSubscription>() => T;
-}
-
-export interface NutritionPreviousValues {
-  id: ID_Output;
-  calories: Float;
-  sugar: Float;
-}
-
-export interface NutritionPreviousValuesPromise
-  extends Promise<NutritionPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  calories: () => Promise<Float>;
-  sugar: () => Promise<Float>;
-}
-
-export interface NutritionPreviousValuesSubscription
-  extends Promise<AsyncIterator<NutritionPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  calories: () => Promise<AsyncIterator<Float>>;
-  sugar: () => Promise<AsyncIterator<Float>>;
-}
-
 export interface SnackSubscriptionPayload {
   mutation: MutationType;
   node: Snack;
@@ -936,6 +446,12 @@ export interface SnackPreviousValues {
   name: String;
   image: String;
   description?: String;
+  calories: Float;
+  sugar: Float;
+  vegetarian: Boolean;
+  vegan: Boolean;
+  nutFree: Boolean;
+  glutenFree: Boolean;
 }
 
 export interface SnackPreviousValuesPromise
@@ -945,6 +461,12 @@ export interface SnackPreviousValuesPromise
   name: () => Promise<String>;
   image: () => Promise<String>;
   description: () => Promise<String>;
+  calories: () => Promise<Float>;
+  sugar: () => Promise<Float>;
+  vegetarian: () => Promise<Boolean>;
+  vegan: () => Promise<Boolean>;
+  nutFree: () => Promise<Boolean>;
+  glutenFree: () => Promise<Boolean>;
 }
 
 export interface SnackPreviousValuesSubscription
@@ -954,6 +476,12 @@ export interface SnackPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  calories: () => Promise<AsyncIterator<Float>>;
+  sugar: () => Promise<AsyncIterator<Float>>;
+  vegetarian: () => Promise<AsyncIterator<Boolean>>;
+  vegan: () => Promise<AsyncIterator<Boolean>>;
+  nutFree: () => Promise<AsyncIterator<Boolean>>;
+  glutenFree: () => Promise<AsyncIterator<Boolean>>;
 }
 
 /*
@@ -961,16 +489,6 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -982,6 +500,16 @@ The `Float` scalar type represents signed double-precision fractional values as 
 */
 export type Float = number;
 
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
+
 export type Long = string;
 
 /**
@@ -991,14 +519,6 @@ export type Long = string;
 export const models: Model[] = [
   {
     name: "Snack",
-    embedded: false
-  },
-  {
-    name: "Nutrition",
-    embedded: false
-  },
-  {
-    name: "Dietary",
     embedded: false
   }
 ];

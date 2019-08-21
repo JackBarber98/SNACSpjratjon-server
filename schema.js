@@ -2,28 +2,16 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    snack: [Snack!]!
-    nutrition: Nutrition!
-    dietary: Dietary!
+    snacks: [Snack!]!
   }
 
   type Snack {
     id: ID!
     name: String!
-    description: String
     image: String!
-    nutrition: Nutrition!
-    dietary: Dietary!
-  }
-
-  type Nutrition {
-    id: ID!
+    description: String
     calories: Float!
     sugar: Float!
-  }
-
-  type Dietary {
-    id: ID!
     vegetarian: Boolean!
     vegan: Boolean!
     nutFree: Boolean!

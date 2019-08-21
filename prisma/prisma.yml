@@ -1,6 +1,4 @@
-# Specifies the HTTP endpoint of your Prisma API.
-#endpoint: ''
-endpoint: https://eu1.prisma.sh/jack151298/SNACSpjratjon-server/dev
+
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
@@ -14,3 +12,4 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+endpoint: https://eu1.prisma.sh/jack151298/SNACSpjratjon-server/dev

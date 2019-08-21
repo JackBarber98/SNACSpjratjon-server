@@ -3,15 +3,7 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateDietary {
-  count: Int!
-}
-
-type AggregateNutrition {
-  count: Int!
-}
-
-type AggregateSnack {
+/* GraphQL */ `type AggregateSnack {
   count: Int!
 }
 
@@ -19,157 +11,9 @@ type BatchPayload {
   count: Long!
 }
 
-type Dietary {
-  id: ID!
-  vegetarian: Boolean!
-  vegan: Boolean!
-  nutFree: Boolean!
-  glutenFree: Boolean!
-}
-
-type DietaryConnection {
-  pageInfo: PageInfo!
-  edges: [DietaryEdge]!
-  aggregate: AggregateDietary!
-}
-
-input DietaryCreateInput {
-  id: ID
-  vegetarian: Boolean!
-  vegan: Boolean!
-  nutFree: Boolean!
-  glutenFree: Boolean!
-}
-
-input DietaryCreateOneInput {
-  create: DietaryCreateInput
-  connect: DietaryWhereUniqueInput
-}
-
-type DietaryEdge {
-  node: Dietary!
-  cursor: String!
-}
-
-enum DietaryOrderByInput {
-  id_ASC
-  id_DESC
-  vegetarian_ASC
-  vegetarian_DESC
-  vegan_ASC
-  vegan_DESC
-  nutFree_ASC
-  nutFree_DESC
-  glutenFree_ASC
-  glutenFree_DESC
-}
-
-type DietaryPreviousValues {
-  id: ID!
-  vegetarian: Boolean!
-  vegan: Boolean!
-  nutFree: Boolean!
-  glutenFree: Boolean!
-}
-
-type DietarySubscriptionPayload {
-  mutation: MutationType!
-  node: Dietary
-  updatedFields: [String!]
-  previousValues: DietaryPreviousValues
-}
-
-input DietarySubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: DietaryWhereInput
-  AND: [DietarySubscriptionWhereInput!]
-  OR: [DietarySubscriptionWhereInput!]
-  NOT: [DietarySubscriptionWhereInput!]
-}
-
-input DietaryUpdateDataInput {
-  vegetarian: Boolean
-  vegan: Boolean
-  nutFree: Boolean
-  glutenFree: Boolean
-}
-
-input DietaryUpdateInput {
-  vegetarian: Boolean
-  vegan: Boolean
-  nutFree: Boolean
-  glutenFree: Boolean
-}
-
-input DietaryUpdateManyMutationInput {
-  vegetarian: Boolean
-  vegan: Boolean
-  nutFree: Boolean
-  glutenFree: Boolean
-}
-
-input DietaryUpdateOneRequiredInput {
-  create: DietaryCreateInput
-  update: DietaryUpdateDataInput
-  upsert: DietaryUpsertNestedInput
-  connect: DietaryWhereUniqueInput
-}
-
-input DietaryUpsertNestedInput {
-  update: DietaryUpdateDataInput!
-  create: DietaryCreateInput!
-}
-
-input DietaryWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  vegetarian: Boolean
-  vegetarian_not: Boolean
-  vegan: Boolean
-  vegan_not: Boolean
-  nutFree: Boolean
-  nutFree_not: Boolean
-  glutenFree: Boolean
-  glutenFree_not: Boolean
-  AND: [DietaryWhereInput!]
-  OR: [DietaryWhereInput!]
-  NOT: [DietaryWhereInput!]
-}
-
-input DietaryWhereUniqueInput {
-  id: ID
-}
-
 scalar Long
 
 type Mutation {
-  createDietary(data: DietaryCreateInput!): Dietary!
-  updateDietary(data: DietaryUpdateInput!, where: DietaryWhereUniqueInput!): Dietary
-  updateManyDietaries(data: DietaryUpdateManyMutationInput!, where: DietaryWhereInput): BatchPayload!
-  upsertDietary(where: DietaryWhereUniqueInput!, create: DietaryCreateInput!, update: DietaryUpdateInput!): Dietary!
-  deleteDietary(where: DietaryWhereUniqueInput!): Dietary
-  deleteManyDietaries(where: DietaryWhereInput): BatchPayload!
-  createNutrition(data: NutritionCreateInput!): Nutrition!
-  updateNutrition(data: NutritionUpdateInput!, where: NutritionWhereUniqueInput!): Nutrition
-  updateManyNutritions(data: NutritionUpdateManyMutationInput!, where: NutritionWhereInput): BatchPayload!
-  upsertNutrition(where: NutritionWhereUniqueInput!, create: NutritionCreateInput!, update: NutritionUpdateInput!): Nutrition!
-  deleteNutrition(where: NutritionWhereUniqueInput!): Nutrition
-  deleteManyNutritions(where: NutritionWhereInput): BatchPayload!
   createSnack(data: SnackCreateInput!): Snack!
   updateSnack(data: SnackUpdateInput!, where: SnackWhereUniqueInput!): Snack
   updateManySnacks(data: SnackUpdateManyMutationInput!, where: SnackWhereInput): BatchPayload!
@@ -188,134 +32,6 @@ interface Node {
   id: ID!
 }
 
-type Nutrition {
-  id: ID!
-  calories: Float!
-  sugar: Float!
-}
-
-type NutritionConnection {
-  pageInfo: PageInfo!
-  edges: [NutritionEdge]!
-  aggregate: AggregateNutrition!
-}
-
-input NutritionCreateInput {
-  id: ID
-  calories: Float!
-  sugar: Float!
-}
-
-input NutritionCreateOneInput {
-  create: NutritionCreateInput
-  connect: NutritionWhereUniqueInput
-}
-
-type NutritionEdge {
-  node: Nutrition!
-  cursor: String!
-}
-
-enum NutritionOrderByInput {
-  id_ASC
-  id_DESC
-  calories_ASC
-  calories_DESC
-  sugar_ASC
-  sugar_DESC
-}
-
-type NutritionPreviousValues {
-  id: ID!
-  calories: Float!
-  sugar: Float!
-}
-
-type NutritionSubscriptionPayload {
-  mutation: MutationType!
-  node: Nutrition
-  updatedFields: [String!]
-  previousValues: NutritionPreviousValues
-}
-
-input NutritionSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: NutritionWhereInput
-  AND: [NutritionSubscriptionWhereInput!]
-  OR: [NutritionSubscriptionWhereInput!]
-  NOT: [NutritionSubscriptionWhereInput!]
-}
-
-input NutritionUpdateDataInput {
-  calories: Float
-  sugar: Float
-}
-
-input NutritionUpdateInput {
-  calories: Float
-  sugar: Float
-}
-
-input NutritionUpdateManyMutationInput {
-  calories: Float
-  sugar: Float
-}
-
-input NutritionUpdateOneRequiredInput {
-  create: NutritionCreateInput
-  update: NutritionUpdateDataInput
-  upsert: NutritionUpsertNestedInput
-  connect: NutritionWhereUniqueInput
-}
-
-input NutritionUpsertNestedInput {
-  update: NutritionUpdateDataInput!
-  create: NutritionCreateInput!
-}
-
-input NutritionWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  calories: Float
-  calories_not: Float
-  calories_in: [Float!]
-  calories_not_in: [Float!]
-  calories_lt: Float
-  calories_lte: Float
-  calories_gt: Float
-  calories_gte: Float
-  sugar: Float
-  sugar_not: Float
-  sugar_in: [Float!]
-  sugar_not_in: [Float!]
-  sugar_lt: Float
-  sugar_lte: Float
-  sugar_gt: Float
-  sugar_gte: Float
-  AND: [NutritionWhereInput!]
-  OR: [NutritionWhereInput!]
-  NOT: [NutritionWhereInput!]
-}
-
-input NutritionWhereUniqueInput {
-  id: ID
-}
-
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -324,12 +40,6 @@ type PageInfo {
 }
 
 type Query {
-  dietary(where: DietaryWhereUniqueInput!): Dietary
-  dietaries(where: DietaryWhereInput, orderBy: DietaryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dietary]!
-  dietariesConnection(where: DietaryWhereInput, orderBy: DietaryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DietaryConnection!
-  nutrition(where: NutritionWhereUniqueInput!): Nutrition
-  nutritions(where: NutritionWhereInput, orderBy: NutritionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Nutrition]!
-  nutritionsConnection(where: NutritionWhereInput, orderBy: NutritionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NutritionConnection!
   snack(where: SnackWhereUniqueInput!): Snack
   snacks(where: SnackWhereInput, orderBy: SnackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Snack]!
   snacksConnection(where: SnackWhereInput, orderBy: SnackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SnackConnection!
@@ -341,8 +51,12 @@ type Snack {
   name: String!
   image: String!
   description: String
-  nutrition: Nutrition!
-  dietary: Dietary!
+  calories: Float!
+  sugar: Float!
+  vegetarian: Boolean!
+  vegan: Boolean!
+  nutFree: Boolean!
+  glutenFree: Boolean!
 }
 
 type SnackConnection {
@@ -356,8 +70,12 @@ input SnackCreateInput {
   name: String!
   image: String!
   description: String
-  nutrition: NutritionCreateOneInput!
-  dietary: DietaryCreateOneInput!
+  calories: Float!
+  sugar: Float!
+  vegetarian: Boolean!
+  vegan: Boolean!
+  nutFree: Boolean!
+  glutenFree: Boolean!
 }
 
 type SnackEdge {
@@ -374,6 +92,18 @@ enum SnackOrderByInput {
   image_DESC
   description_ASC
   description_DESC
+  calories_ASC
+  calories_DESC
+  sugar_ASC
+  sugar_DESC
+  vegetarian_ASC
+  vegetarian_DESC
+  vegan_ASC
+  vegan_DESC
+  nutFree_ASC
+  nutFree_DESC
+  glutenFree_ASC
+  glutenFree_DESC
 }
 
 type SnackPreviousValues {
@@ -381,6 +111,12 @@ type SnackPreviousValues {
   name: String!
   image: String!
   description: String
+  calories: Float!
+  sugar: Float!
+  vegetarian: Boolean!
+  vegan: Boolean!
+  nutFree: Boolean!
+  glutenFree: Boolean!
 }
 
 type SnackSubscriptionPayload {
@@ -405,14 +141,24 @@ input SnackUpdateInput {
   name: String
   image: String
   description: String
-  nutrition: NutritionUpdateOneRequiredInput
-  dietary: DietaryUpdateOneRequiredInput
+  calories: Float
+  sugar: Float
+  vegetarian: Boolean
+  vegan: Boolean
+  nutFree: Boolean
+  glutenFree: Boolean
 }
 
 input SnackUpdateManyMutationInput {
   name: String
   image: String
   description: String
+  calories: Float
+  sugar: Float
+  vegetarian: Boolean
+  vegan: Boolean
+  nutFree: Boolean
+  glutenFree: Boolean
 }
 
 input SnackWhereInput {
@@ -472,8 +218,30 @@ input SnackWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  nutrition: NutritionWhereInput
-  dietary: DietaryWhereInput
+  calories: Float
+  calories_not: Float
+  calories_in: [Float!]
+  calories_not_in: [Float!]
+  calories_lt: Float
+  calories_lte: Float
+  calories_gt: Float
+  calories_gte: Float
+  sugar: Float
+  sugar_not: Float
+  sugar_in: [Float!]
+  sugar_not_in: [Float!]
+  sugar_lt: Float
+  sugar_lte: Float
+  sugar_gt: Float
+  sugar_gte: Float
+  vegetarian: Boolean
+  vegetarian_not: Boolean
+  vegan: Boolean
+  vegan_not: Boolean
+  nutFree: Boolean
+  nutFree_not: Boolean
+  glutenFree: Boolean
+  glutenFree_not: Boolean
   AND: [SnackWhereInput!]
   OR: [SnackWhereInput!]
   NOT: [SnackWhereInput!]
@@ -484,8 +252,6 @@ input SnackWhereUniqueInput {
 }
 
 type Subscription {
-  dietary(where: DietarySubscriptionWhereInput): DietarySubscriptionPayload
-  nutrition(where: NutritionSubscriptionWhereInput): NutritionSubscriptionPayload
   snack(where: SnackSubscriptionWhereInput): SnackSubscriptionPayload
 }
 `

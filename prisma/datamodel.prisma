@@ -3,18 +3,8 @@
     name: String!
     image: String!
     description: String
-    nutrition: Nutrition!
-    dietary: Dietary!
-  }
-
-  type Nutrition {
-    id: ID! @id
     calories: Float!
     sugar: Float!
-  }
-
-  type Dietary {
-    id: ID! @id
     vegetarian: Boolean!
     vegan: Boolean!
     nutFree: Boolean!
